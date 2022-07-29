@@ -116,8 +116,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_jwt = {
     'AUTH_HEADER_TYPES':('Bearer',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKOEN_LIFETIME':timedelta(hours=2),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKOEN_LIFETIME':timedelta(days=1),
     'BLACKLIST_AFTER_ROTATION': False,
     'ROTATE_REFRESH_TOKENS': False,
     # 'UPDATE_LAST_LOGIN': True,
@@ -139,9 +139,24 @@ SIMPLE_jwt = {
 
     'JTI_CLAIM': 'jti',
 
+
+
+
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(hours=2),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+DJOSER = {
+    # 'SEND_ACTIVATION_EMAIL':True,
+    # 'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'SERIALIZERS':{
+        'user_create':'authentication.serializer.UserSerializer',
+        'user':'authentication.serializer.UserSerializer'
+    },
+    'PERMISSIONS':{
+        'user_create':['rest_framework.permissions.AllowAny']
+    }
 }
 
 # Internationalization
@@ -165,3 +180,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mail.outlook.com'
+EMAIL_HOST_USER = "lasabilekan@outlook.com"
+EMAIL_HOST_PASSWORD = "Laslekmuq@2000"

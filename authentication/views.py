@@ -3,9 +3,11 @@ from rest_framework.generics import GenericAPIView
 from rest_framework import status
 from rest_framework.response import Response
 from .serializer import UserSerializer
+from rest_framework.permissions import AllowAny
 
 class UserCreateView(GenericAPIView):
     serializer_class = UserSerializer
+    permission_class = [AllowAny]
     def post(self, request):
         data=request.data
         serializer = self.serializer_class(data=data)
