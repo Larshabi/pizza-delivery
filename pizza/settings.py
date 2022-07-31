@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'phonenumber_field',
     'djoser',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt','drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -119,32 +119,6 @@ SIMPLE_jwt = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKOEN_LIFETIME':timedelta(days=1),
     'BLACKLIST_AFTER_ROTATION': False,
-    'ROTATE_REFRESH_TOKENS': False,
-    # 'UPDATE_LAST_LOGIN': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'AUDIENCE': None,
-    'ISSUER': None,
-    'JWK_URL': None,
-    'LEEWAY': 0,
-
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
-
-    'JTI_CLAIM': 'jti',
-
-
-
-
-    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(hours=2),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
 DJOSER = {
@@ -186,3 +160,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mail.outlook.com'
 EMAIL_HOST_USER = "lasabilekan@outlook.com"
 EMAIL_HOST_PASSWORD = "Laslekmuq@2000"
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS':{
+        'Bearer':{
+            'type':'apiKey',
+            'name':'Authorization',
+           'in':'header' 
+        }
+    }
+}
