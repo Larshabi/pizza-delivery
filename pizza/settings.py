@@ -119,22 +119,46 @@ REST_FRAMEWORK = {
     ]
 }
 
-SIMPLE_jwt = {
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME':timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME':timedelta(hours=2),
+    'ROTATE_REFRESH_TOKENS':False,
+    'BLACKLIST_AFTER_ROTATION':False,
+    'ALGORITH':'HS256',
+    'SIGNING_KEY':SECRET_KEY,
+    'VERIFYING_KEY':None,
+    'AUDIENCE':None,
+    'ISSUER':None,
+    'JWT_URL':None,
+    'LEEWAY':0,
+    
     'AUTH_HEADER_TYPES':('Bearer',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKOEN_LIFETIME':timedelta(days=1),
-    'BLACKLIST_AFTER_ROTATION': False,
+    'AUTH_HEADER_NAME':'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD':'id',
+    'USER_ID_CLAIM':'user_id',
+    'USER_AUTHENTICATION_RULE':'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+    
+    # 'AUTH_TOKEN_CLASS':('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM':'token_type',
+    'TOKEN_USER_CLASS':'rest_framework_simplejwt.models.TokenUser',
+    'JTI_CLAIM':'jti',
+    
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM':'refresh_ep',
+    'SLIDING_TOKEN_REFRESH_LIFETIME':timedelta(hours=2),
+    'SLIDING_TOKEN_LIFETIME':timedelta(hours=2)
 }
 
 DJOSER = {
-    # 'SEND_ACTIVATION_EMAIL':True,
-    # 'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+    'ACTIVATION_URL':'/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL':'/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL':'/username/reset/confirm/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    'PASSWORD_RESET_CONFIRM_RETYPE':True,
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND':True,
     'SERIALIZERS':{
         'user_create':'authentication.serializer.UserSerializer',
         'user':'authentication.serializer.UserSerializer'
-    },
-    'PERMISSIONS':{
-        'user_create':['rest_framework.permissions.AllowAny']
     }
 }
 
