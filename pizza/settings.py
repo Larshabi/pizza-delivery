@@ -149,7 +149,7 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': False,
     'ACTIVATION_URL':'/activate/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL':'/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL':'/username/reset/confirm/{uid}/{token}',
@@ -201,3 +201,6 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+MAILJET_API_KEY= '3a565a9e70e77c5082bdb2e69b4689db'
+MAILJET_API_SECRET='614181d140e96a3c38ffe493ab134148'
