@@ -149,7 +149,7 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'SEND_ACTIVATION_EMAIL': False,
+    'SEND_ACTIVATION_EMAIL': True,
     'ACTIVATION_URL':'/activate/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL':'/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL':'/username/reset/confirm/{uid}/{token}',
@@ -189,9 +189,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mail.outlook.com'
-EMAIL_HOST_USER = "lasabilekan@outlook.com"
-EMAIL_HOST_PASSWORD = "Laslekmuq@2000"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS':{
         'Bearer':{
