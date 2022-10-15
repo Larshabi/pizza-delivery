@@ -49,3 +49,10 @@ class UserSerializer(serializers.ModelSerializer):
         phone = validated_data['phone']
         password = validated_data['password']
         return User.objects.create_user(username=username, email=email, phone=phone, password=password)
+    
+    
+class EmailVerificationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ["username", "email", "phone"]

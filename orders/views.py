@@ -10,7 +10,7 @@ from drf_yasg.utils import swagger_auto_schema
 
 class OrderCreateListView(ListCreateAPIView):
     serializer_class = OrderSerializer
-    queryset = Orders.objects.all()
+    queryset = Orders.objects.all() 
     permission_classes = [IsAuthenticatedOrReadOnly]
     @swagger_auto_schema(operation_summary="Create an Order")
     def post(self, request):
@@ -40,7 +40,7 @@ class  UpdateOrderStatus(UpdateAPIView):
     lookup_field = 'id'
     permission_classes = [IsAdminUser]
     @swagger_auto_schema(operation_summary="Update order status")
-    def put(self, request):
+    def patch(self, request):
         serializer = self.serializer_class(data=request.data)
         user = request.user
         if serializer.is_valid():
