@@ -16,7 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -169,7 +169,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ALLOWED_HOSTS = ['*']
 
@@ -183,6 +183,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = "olusegunoladipupo90@gmail.com"
 EMAIL_HOST_PASSWORD = "wgjqyphavcyjsqmb"
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS':{
         'Bearer':{
@@ -192,3 +194,6 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+MAILJET_API_KEY= '3a565a9e70e77c5082bdb2e69b4689db'
+MAILJET_API_SECRET='614181d140e96a3c38ffe493ab134148'
